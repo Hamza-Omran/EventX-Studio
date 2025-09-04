@@ -77,11 +77,7 @@ function App() {
               <AddAdmin />
             </ProtectedRoute>
           } />
-          <Route path="manage-people/edit/:type/:id" element={
-            <ProtectedRoute requiredRole="admin">
-              <EditPerson />
-            </ProtectedRoute>
-          } />
+          <Route path="manage-people/edit/:type/:id" element={<EditPerson />} />
           <Route path="analytics-reports" element={
             <ProtectedRoute requiredRole="admin">
               <AnalyticsReports />

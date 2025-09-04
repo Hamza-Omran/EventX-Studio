@@ -28,17 +28,16 @@ const Sidebar = forwardRef(({ sidebarOpen, setSidebarOpen, toggleOpacity, userIn
         window.location.href = "/login";
     };
 
-    const handleSettings = async () => {
-        try {
-            const res = await api.get("/auth/me");
-            const person = res.data;
-            if (!person || !person._id || !person.role) return;
-            navigate(`/dashboard/manage-people/edit/${person.role}/${person._id}`, { state: { person, type: person.role } });
+    const handleSettings = () => {
+        if (userInfo && userInfo._id && userInfo.role) {
+            navigate(`/dashboard/manage-people/edit/${userInfo.role}/${userInfo._id}`, {
+                state: { person: userInfo, type: userInfo.role }
+            });
             if (window.innerWidth <= 1350) {
                 setSidebarOpen(false);
             }
-        } catch {
-            alert("Failed to load your profile");
+        } else {
+            alert("User information not available");
         }
     };
 
