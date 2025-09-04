@@ -34,7 +34,7 @@ const Sidebar = forwardRef(({ sidebarOpen, setSidebarOpen, toggleOpacity, userIn
             const person = res.data;
             if (!person || !person._id || !person.role) return;
             navigate(`/dashboard/manage-people/edit/${person.role}/${person._id}`, { state: { person, type: person.role } });
-            if (window.innerWidth <= 767) {
+            if (window.innerWidth <= 1350) {
                 setSidebarOpen(false);
             }
         } catch {
@@ -44,14 +44,14 @@ const Sidebar = forwardRef(({ sidebarOpen, setSidebarOpen, toggleOpacity, userIn
 
     const handleNavigate = (path) => {
         navigate(path);
-        if (window.innerWidth <= 767) {
+        if (window.innerWidth <= 1350) {
             setSidebarOpen(false);
         }
     };
 
     const handleLogoutClick = () => {
         handleLogout();
-        if (window.innerWidth <= 767) {
+        if (window.innerWidth <= 1350) {
             setSidebarOpen(false);
         }
     };
