@@ -22,6 +22,13 @@ connectDB();
 
 const app = express();
 
+// Ensure images directory exists
+const fs = require('fs');
+const imagesDir = path.join(__dirname, '../images');
+if (!fs.existsSync(imagesDir)) {
+    fs.mkdirSync(imagesDir, { recursive: true });
+}
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/images', express.static(path.join(__dirname, '../images')));
@@ -45,6 +52,27 @@ app.use("/api", messageRoutes);
 app.use("/api", adminListRoutes);
 app.use("/api", dashboardStatsRoutes);
 app.use("/api/optimized", optimizedRoutes);
+
+// Debug route to check images folder
+app.get('/debug/images', (req, res) => {
+    const fs = require('fs');
+    const imagesPath = path.join(__dirname, '../images');
+    
+    try {
+        const files = fs.readdirSync(imagesPath);
+        res.json({
+            imagesPath,
+            exists: fs.existsSync(imagesPath),
+            files
+        });
+    } catch (error) {
+        res.json({
+            imagesPath,
+            exists: false,
+            error: error.message
+        });
+    }
+});
 
 app.use((err, req, res, next) => {
     res.status(500).json({ message: "Server error" });
