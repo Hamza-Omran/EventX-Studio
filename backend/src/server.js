@@ -26,7 +26,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/images', express.static(path.join(__dirname, '../images')));
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: [
+        "http://localhost:5173",
+        "https://eventx-studio.vercel.app",
+        /\.vercel\.app$/
+    ],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
