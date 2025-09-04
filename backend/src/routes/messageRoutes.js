@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { protectAny } = require("../middleware/authMiddleware");
 const Message = require("../models/Message");
-const User = require("../models/user");
+const User = require("../models/User");
 
 router.get("/users", protectAny, async (req, res) => {
     try {

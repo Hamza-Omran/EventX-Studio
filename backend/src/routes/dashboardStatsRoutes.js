@@ -4,7 +4,7 @@ const { protectAny, protectAdmin } = require("../middleware/authMiddleware");
 const Event = require("../models/Event");
 const Ticket = require("../models/Ticket");
 const Message = require("../models/Message");
-const User = require("../models/user");
+const User = require("../models/User");
 const Admin = require("../models/Admin");
 
 router.get("/dashboard-stats", protectAdmin, async (req, res) => {

@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user.js");
+const User = require("../models/User.js");
 const Admin = require("../models/Admin.js");
 const generateToken = require("../utils/generateToken.js");
 const { protectAny, protectAdmin } = require("../middleware/authMiddleware");
 const upload = require("../config/multer.js");
-const { saveImage, deleteImage, updateImage } = require("../utils/imageUtils.js");
+const { saveImage, deleteImage, updateImage } = require("../utils/imageUtils.js");
+
 router.post("/register", upload.single('image'), async (req, res) => {
   try {
     const { name, email, password, age, interests, gender, location, role } = req.body;
@@ -86,11 +87,13 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
-});
+});
+
 router.post("/logout", (req, res) => {
   res.clearCookie("jwt");
   res.json({ message: "Logged out successfully" });
-});
+});
+
 router.get("/me", protectAny, (req, res) => {
   res.json({
     role: req.user.role,
@@ -103,9 +106,11 @@ router.get("/me", protectAny, (req, res) => {
     interests: req.user.interests,
     image: req.user.image || ""
   });
-});
+});
+
 router.put("/users/:id", protectAny, upload.single('image'), async (req, res) => {
-  try {
+  try {
+
     if (req.user.role === "user" && req.user._id.toString() !== req.params.id) {
       return res.status(401).json({ message: "Not authorized" });
     }
@@ -113,15 +118,18 @@ router.put("/users/:id", protectAny, upload.single('image'), async (req, res) =>
     const currentUser = await User.findById(req.params.id);
     if (!currentUser) return res.status(404).json({ message: "User not found" });
 
-    const updateData = { ...req.body };
+    const updateData = { ...req.body };
+
     if (updateData.password) {
       const bcrypt = require("bcryptjs");
       const salt = await bcrypt.genSalt(10);
       updateData.password = await bcrypt.hash(updateData.password, salt);
-    }
+    }
+
     if (req.file) {
       updateData.image = updateImage(req.file, currentUser.image);
-    } else if (req.body.removeImage === 'true' || req.body.image === '') {
+    } else if (req.body.removeImage === 'true' || req.body.image === '') {
+
       if (currentUser.image) {
         deleteImage(currentUser.image);
       }
@@ -133,11 +141,13 @@ router.put("/users/:id", protectAny, upload.single('image'), async (req, res) =>
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-});
+});
+
 router.delete("/users/:id", protectAdmin, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
     if (user.image) {
       deleteImage(user.image);
     }
@@ -147,9 +157,11 @@ router.delete("/users/:id", protectAdmin, async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-});
+});
+
 router.get("/users/:id", protectAny, async (req, res) => {
-  try {
+  try {
+
     if (req.user.role === "user" && req.user._id.toString() !== req.params.id) {
       return res.status(401).json({ message: "Not authorized" });
     }
