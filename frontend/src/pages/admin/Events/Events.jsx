@@ -144,7 +144,7 @@ const Events = () => {
                 <div className="header-user-profile">
                     {displayUser?.image ? (
                         <img
-                            src={displayUser.image.startsWith('http') ? displayUser.image : `http://localhost:5000/${displayUser.image}`}
+                            src={displayUser.image.startsWith('http') ? displayUser.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${displayUser.image}`}
                             alt={displayUser.name || 'User'}
                             className="header-user-image"
                             title={displayUser.name || 'User Profile'}

@@ -16,6 +16,7 @@ import {
     FaRocket,
 } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
+import api from '../../api/axiosInstance';
 import './Sidebar.css'
 
 const Sidebar = forwardRef(({ sidebarOpen, setSidebarOpen, toggleOpacity, userInfo }, ref) => {
@@ -29,8 +30,8 @@ const Sidebar = forwardRef(({ sidebarOpen, setSidebarOpen, toggleOpacity, userIn
 
     const handleSettings = async () => {
         try {
-            const res = await fetch("http://localhost:5000/api/auth/me", { credentials: "include" });
-            const person = await res.json();
+            const res = await api.get("/auth/me");
+            const person = res.data;
             if (!person || !person._id || !person.role) return;
             navigate(`/dashboard/manage-people/edit/${person.role}/${person._id}`, { state: { person, type: person.role } });
             if (window.innerWidth <= 767) {

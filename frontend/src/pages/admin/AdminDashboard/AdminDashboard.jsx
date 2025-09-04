@@ -183,7 +183,7 @@ const AdminDashboard = () => {
                     <div className="admin-dashboard-avatar">
                         {userInfo?.image ? (
                             <img
-                                src={`http://localhost:5000/${userInfo.image}`}
+                                src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${userInfo.image}`}
                                 alt={`${userInfo.name}'s profile`}
                             />
                         ) : (

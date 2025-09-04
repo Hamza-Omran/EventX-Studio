@@ -77,7 +77,7 @@ const Person = ({ _id, name, email, age, gender, location, interests, image, cre
                 <div className="person-image-container">
                     {image ? (
                         <img
-                            src={`http://localhost:5000/${image}`}
+                            src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}`}
                             alt={`${name}'s profile`}
                         />
                     ) : (

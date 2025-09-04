@@ -168,7 +168,7 @@ const EditPerson = () => {
                             />
                         ) : currentImage ? (
                             <img
-                                src={`http://localhost:5000/${currentImage}`}
+                                src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${currentImage}`}
                                 alt="Current profile"
                                 style={{
                                     width: '100%',
