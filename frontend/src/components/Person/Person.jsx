@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaEllipsisV } from "react-icons/fa";
+import { FaEllipsisV, FaUser } from "react-icons/fa";
 import api from "@/api/axiosInstance";
 import "./Person.css";
 
 const Person = ({ _id, name, email, age, gender, location, interests, image, createdAt, updatedAt, onEdit, onDelete, type, currentAdminId }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+    const [imageError, setImageError] = useState(false);
     const menuRef = useRef(null);
     useEffect(() => {
         if (!menuOpen) return;
@@ -75,11 +76,15 @@ const Person = ({ _id, name, email, age, gender, location, interests, image, cre
                     )}
                 </div>
                 <div className="person-image-container">
-                    <img
-                        src={image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}` : ''}
-                        alt={`${name}'s profile`}
-                        style={{ display: 'block', width: '40px', height: '40px', borderRadius: '50%' }}
-                    />
+                    {image && !imageError ? (
+                        <img
+                            src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}`}
+                            alt={`${name}'s profile`}
+                            onError={() => setImageError(true)}
+                        />
+                    ) : (
+                        <FaUser style={{ fontSize: '40px', color: '#ccc' }} />
+                    )}
                 </div>
                 <div className="person-name">{name}</div>
                 <div className="person-email">{email}</div>

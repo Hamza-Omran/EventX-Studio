@@ -29,6 +29,7 @@ const AdminDashboard = () => {
     const [showSalesDetails, setShowSalesDetails] = useState(true);
     const [search, setSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [avatarImageError, setAvatarImageError] = useState(false);
 
     useEffect(() => {
         const loadDashboard = async () => {
@@ -181,14 +182,14 @@ const AdminDashboard = () => {
             <div className="admin-dashboard-header">
                 <div className="left-wing">
                     <div className="admin-dashboard-avatar">
-                        {userInfo?.image ? (
+                        {userInfo?.image && !avatarImageError ? (
                             <img
                                 src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${userInfo.image}`}
                                 alt={`${userInfo.name}'s profile`}
-                                style={{ width: '35px', height: '35px', borderRadius: '50%' }}
+                                onError={() => setAvatarImageError(true)}
                             />
                         ) : (
-                            <svg width="35" height="35" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24">
+                            <svg width="60" height="60" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24">
                                 <circle cx="12" cy="8" r="4" />
                                 <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
                             </svg>

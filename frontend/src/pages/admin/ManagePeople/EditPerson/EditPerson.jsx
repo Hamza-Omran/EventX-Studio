@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, useOutletContext } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import api from "@/api/axiosInstance";
 import LoadingDots from "@/components/LoadingDots/LoadingDots";
 import "./EditPerson.css";
@@ -19,7 +20,10 @@ const EditPerson = () => {
         image: ""
     });
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState("");
     const [currentImage, setCurrentImage] = useState("");
@@ -68,6 +72,10 @@ const EditPerson = () => {
 
     const handleChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     const handleImageChange = (e) => {
@@ -229,7 +237,29 @@ const EditPerson = () => {
                 <label>Email</label>
                 <input name="email" value={form.email} onChange={handleChange} required />
                 <label>Password</label>
-                <input name="password" value={form.password} onChange={handleChange} type="password" autoComplete="new-password" />
+                <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
+                    <input
+                        name="password"
+                        value={form.password}
+                        onChange={handleChange}
+                        type={showPassword ? "text" : "password"}
+                        autoComplete="new-password"
+                        style={{ paddingRight: "40px", width: "100%" }}
+                    />
+                    <span
+                        onClick={togglePasswordVisibility}
+                        style={{
+                            position: "absolute",
+                            right: "10px",
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                            cursor: "pointer",
+                            color: "#666"
+                        }}
+                    >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </span>
+                </div>
                 {type === "user" && <>
                     <label>Age</label>
                     <input name="age" value={form.age} onChange={handleChange} type="number" min="0" />
