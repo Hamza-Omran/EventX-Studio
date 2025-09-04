@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User.js");
-const Admin = require("../models/Admin.js");
-const generateToken = require("../utils/generateToken.js");
+const User = require("../models/User");
+const Admin = require("../models/Admin");
+const generateToken = require("../utils/generateToken");
 const { protectAny, protectAdmin } = require("../middleware/authMiddleware");
-const upload = require("../config/multer.js");
-const { saveImage, deleteImage, updateImage } = require("../utils/imageUtils.js");
+const upload = require("../config/multer");
+const { saveImage, deleteImage, updateImage } = require("../utils/imageUtils");
 
 router.post("/register", upload.single('image'), async (req, res) => {
   try {
