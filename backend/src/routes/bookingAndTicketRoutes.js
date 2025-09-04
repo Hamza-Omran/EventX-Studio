@@ -13,8 +13,12 @@ router.post("/events/:id/book", protectAny, async (req, res) => {
         const alreadyBooked = await Ticket.findOne({ user: req.user._id, event: event._id });
         if (alreadyBooked) return res.status(400).json({ message: "You have already booked this event." });
         if (event.availableSeats <= 0) return res.status(400).json({ message: "No seats available" });
-        event.availableSeats -= 1;
-        await event.save();
+        
+        // Update only the availableSeats field to avoid validation issues
+        await Event.findByIdAndUpdate(req.params.id, { 
+            $inc: { availableSeats: -1 }
+        });
+        
         const tempTicketId = new ObjectId();
         const qrData = `http://localhost:5173/dashboard/tickets/details/${tempTicketId}`;
         const qrCode = await QRCode.toDataURL(qrData);
