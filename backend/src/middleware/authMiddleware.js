@@ -3,7 +3,13 @@ const Admin = require("../models/Admin");
 const User = require("../models/User");
 
 const protectAdmin = async (req, res, next) => {
-    const token = req.cookies.jwt;
+    let token = req.cookies.jwt;
+    
+    // Also check Authorization header if cookie is not present
+    if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+        token = req.headers.authorization.split(" ")[1];
+    }
+    
     if (!token) return res.status(401).json({ message: "Not authorized, no token" });
 
     try {
@@ -19,7 +25,13 @@ const protectAdmin = async (req, res, next) => {
 };
 
 const protectUser = async (req, res, next) => {
-    const token = req.cookies.jwt;
+    let token = req.cookies.jwt;
+    
+    // Also check Authorization header if cookie is not present
+    if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+        token = req.headers.authorization.split(" ")[1];
+    }
+    
     if (!token) return res.status(401).json({ message: "Not authorized, no token" });
 
     try {
@@ -34,7 +46,13 @@ const protectUser = async (req, res, next) => {
 };
 
 const protectAny = async (req, res, next) => {
-    const token = req.cookies.jwt;
+    let token = req.cookies.jwt;
+    
+    // Also check Authorization header if cookie is not present
+    if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+        token = req.headers.authorization.split(" ")[1];
+    }
+    
     if (!token) return res.status(401).json({ message: "Not authorized, no token" });
 
     try {

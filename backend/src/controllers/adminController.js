@@ -51,7 +51,8 @@ const loginAdmin = async (req, res) => {
             name: admin.name,
             email: admin.email,
             role: "admin",
-            image: admin.image || ""
+            image: admin.image || "",
+            token: token
         });
     } catch (err) {
         res.status(500).json({ message: "Server error" });

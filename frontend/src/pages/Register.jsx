@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -79,7 +79,7 @@ const Register = () => {
                 formData.append('image', selectedImage);
             }
 
-            await axios.post("http://localhost:5000/api/auth/register", formData, {
+            await api.post("/auth/register", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -236,7 +236,7 @@ const Register = () => {
                     <span className="register-icon">
                     </span>
                     <span className="eye-icon" onClick={() => setShowConfirmPassword((v) => !v)}>
-                        {showConfirmPassword ? (                            
+                        {showConfirmPassword ? (
                             <svg width="20" height="20" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24"><path d="M2 12C4.5 7 7.5 4 12 4s7.5 3 10 8c-2.5 5-5.5 8-10 8s-7.5-3-10-8z" /><circle cx="12" cy="12" r="3" /><line x1="3" y1="3" x2="21" y2="21" stroke="#aaa" strokeWidth="2" /></svg>
                         ) : (
                             <svg width="20" height="20" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M2 12C4.5 7 7.5 4 12 4s7.5 3 10 8c-2.5 5-5.5 8-10 8s-7.5-3-10-8z" /></svg>

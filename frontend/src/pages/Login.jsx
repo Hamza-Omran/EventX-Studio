@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -26,9 +26,13 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/login", form, {
-                withCredentials: true,
-            });
+            const response = await api.post("/auth/login", form);
+
+            // Store token in localStorage for authorization headers
+            if (response.data.token) {
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user', JSON.stringify(response.data));
+            }
 
             if (form.role === "admin") {
                 navigate("/dashboard/admin-main-page");

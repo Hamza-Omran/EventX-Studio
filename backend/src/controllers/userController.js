@@ -62,7 +62,8 @@ const loginUser = async (req, res) => {
             gender: user.gender,
             location: user.location,
             interests: user.interests,
-            image: user.image || ""
+            image: user.image || "",
+            token: token
         });
     } catch (err) {
         res.status(500).json({ message: "Server error" });

@@ -9,6 +9,12 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
+    // Add authorization header if token exists
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    
     if (config.method === 'get' && config.url === '/auth/me') {
         const cacheKey = config.url;
         const cached = apiCache.get(cacheKey);
