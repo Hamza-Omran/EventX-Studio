@@ -76,7 +76,7 @@ const Person = ({ _id, name, email, age, gender, location, interests, image, cre
                 </div>
                 <div className="person-image-container">
                     <img
-                        src={image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}` : ''}
+                        src={image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}` : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4='}
                         alt={`${name}'s profile`}
                         onError={(e) => {
                             e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4=';
