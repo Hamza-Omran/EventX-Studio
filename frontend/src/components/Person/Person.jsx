@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import api from "@/api/axiosInstance";
-import { userPlaceholder } from "@/utils/placeholders";
 import "./Person.css";
 
 const Person = ({ _id, name, email, age, gender, location, interests, image, createdAt, updatedAt, onEdit, onDelete, type, currentAdminId }) => {
@@ -76,14 +75,28 @@ const Person = ({ _id, name, email, age, gender, location, interests, image, cre
                     )}
                 </div>
                 <div className="person-image-container">
-                    <img
-                        src={image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}` : userPlaceholder}
-                        alt={`${name}'s profile`}
-                        onError={(e) => {
-                            e.target.src = userPlaceholder;
-                        }}
-                        style={{ display: 'block', width: '40px', height: '40px' }}
-                    />
+                    {image ? (
+                        <>
+                            <img
+                                src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}`}
+                                alt={`${name}'s profile`}
+                                onError={(e) => {
+                                    e.target.style.display = 'none';
+                                    e.target.nextElementSibling.style.display = 'block';
+                                }}
+                                style={{ display: 'block', width: '40px', height: '40px', borderRadius: '50%' }}
+                            />
+                            <div
+                                className="user-avatar-placeholder"
+                                style={{ display: 'none', width: '40px', height: '40px' }}
+                            />
+                        </>
+                    ) : (
+                        <div
+                            className="user-avatar-placeholder"
+                            style={{ width: '40px', height: '40px' }}
+                        />
+                    )}
                 </div>
                 <div className="person-name">{name}</div>
                 <div className="person-email">{email}</div>
