@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@import './styles/global.css';
+@import './styles/normalize.css';
+@import './styles/all.min.css';

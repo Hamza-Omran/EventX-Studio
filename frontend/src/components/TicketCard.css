@@ -1,0 +1,12 @@
+.ticket-card {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 100%;
+}
+
+.ticket-card-qr {
+    width: 120px;
+    height: 120px;
+    margin: 16px 0;
+}

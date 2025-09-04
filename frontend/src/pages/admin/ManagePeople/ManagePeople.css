@@ -1,0 +1,147 @@
+.manage-people-root {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background: #f7f7fa;
+    min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+    .manage-people-root {
+        gap: 25px;
+        padding: 25px 25px 25px 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .manage-people-root {
+        gap: 32px;
+        padding: 32px 32px 32px 90px;
+    }
+}
+
+.manage-people-section {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .manage-people-section {
+        border-radius: 16px;
+        padding: 24px 32px;
+        min-width: 340px;
+        gap: 18px;
+    }
+}
+
+.manage-people-header {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+    .manage-people-header {
+        font-size: 1.35rem;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+.add-admin-btn {
+    background: #00c896;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: stretch;
+    transition: background 0.2s;
+}
+
+@media (min-width: 768px) {
+    .add-admin-btn {
+        padding: 8px 16px;
+        font-size: 0.95rem;
+        margin-left: auto;
+        align-self: auto;
+    }
+}
+
+.add-admin-btn:hover {
+    background: #009e74;
+}
+
+.manage-people-arrow {
+    font-size: 1.1rem;
+    color: #00c896;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.manage-people-search {
+    border-radius: 12px;
+    border: 1.5px solid #e0e0e0;
+    padding: 12px 18px;
+    font-size: 1rem;
+    width: 100%;
+    background: #f7f7fa;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .manage-people-search {
+        padding: 8px 18px;
+        font-size: 1.1rem;
+    }
+}
+
+.manage-people-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .manage-people-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 18px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .manage-people-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+.manage-people-empty {
+    color: #888;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .manage-people-empty {
+        font-size: 1.1rem;
+        margin-top: 24px;
+    }
+}

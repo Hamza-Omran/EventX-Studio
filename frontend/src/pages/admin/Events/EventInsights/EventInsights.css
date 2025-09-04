@@ -1,0 +1,459 @@
+.event-insights-root {
+    padding: 16px;
+    width: 1000px;
+    max-width: 100%;
+    margin: auto;
+}
+
+.event-insights-header-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.event-insights-back-btn {
+    background: #00c896;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.event-insights-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+.event-insights-meta {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.event-insights-header-controls {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.event-insights-search {
+    border-radius: 18px;
+    border: 1.5px solid #e0e0e0;
+    padding: 8px 18px;
+    font-size: 1.1rem;
+    width: 180px;
+}
+
+.event-insights-attendee-count {
+    background: #fff;
+    border-radius: 18px;
+    padding: 8px 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.event-insights-filter-btn {
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 18px;
+    padding: 8px 18px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #444;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.event-insights-main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+}
+
+.event-insights-charts-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.event-insights-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    width: 100%;
+    overflow: visible;
+}
+
+.event-insights-card-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.event-insights-charts-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: auto;
+}
+
+.event-insights-pie-card,
+.event-insights-bar-card {
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    padding: 20px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-insights-pie-card {
+    max-width: 350px;
+    overflow: visible;
+    height: fit-content;
+}
+
+.event-chart,
+.event-insights-bar-chart,
+.event-insights-pie-chart {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-insights-pie-chart {
+    width: 150px;
+}
+
+.event-insights-bar-chart.second-bar {
+    position: relative;
+    top: -25px;
+}
+
+.event-insights-bar-chart canvas {
+    margin-top: 50px;
+}
+
+.event-insights-legend-col {
+    margin-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.event-insights-legend-row {
+    margin-top: 18px;
+    display: flex;
+    gap: 12px;
+}
+
+.event-insights-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.event-insights-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.event-insights-legend-label {
+    font-weight: 600;
+}
+
+.event-insights-legend-count {
+    color: #888;
+}
+
+.event-insights-table-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.event-insights-empty-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    color: #888;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.event-insights-empty-message {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 32px 48px;
+    margin-top: 32px;
+    text-align: center;
+    border: 1.5px solid #eee;
+}
+
+@media (max-width: 900px) {
+    .event-insights-main-grid {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .event-insights-charts-row {
+        flex-direction: column;
+        gap: 18px;
+        height: auto;
+    }
+
+    .event-insights-bar-card,
+    .event-insights-pie-card {
+        height: auto;
+        min-height: 180px;
+        width: 100%;
+        max-width: none;
+        overflow: visible;
+    }
+
+    .event-insights-bar-chart.second-bar {
+        position: static;
+        top: auto;
+    }
+
+    .event-insights-bar-chart canvas {
+        margin-top: 20px;
+    }
+
+    .event-chart {
+        overflow: visible;
+        min-height: 250px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+    .event-insights-card {
+        overflow: visible;
+        padding: 24px;
+    }
+
+    .event-insights-bar-card {
+        padding-top: 30px;
+        overflow: visible;
+    }
+
+    .event-chart {
+        overflow: visible;
+        min-height: 280px;
+    }
+
+    .event-insights-legend-col {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-insights-root {
+        padding: 8px;
+    }
+
+    .event-insights-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .event-insights-title {
+        font-size: 1.1rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .event-insights-meta {
+        font-size: 0.85rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .event-insights-card {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .event-insights-card-title {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .event-chart {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .event-insights-legend-col {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .event-insights-legend-item {
+        justify-content: space-between;
+        padding: 4px 0;
+    }
+
+    .event-insights-pie-chart {
+        width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-insights-root {
+        padding: 12px;
+    }
+
+    .event-insights-header-row {
+        gap: 12px;
+    }
+
+    .event-insights-title {
+        font-size: 1.15rem;
+    }
+
+    .event-insights-meta {
+        font-size: 0.9rem;
+    }
+
+    .event-insights-card {
+        padding: 16px;
+    }
+
+    .event-insights-charts-col {
+        flex-direction: column;
+    }
+
+    .event-chart {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .event-insights-legend-col {
+        margin-left: 0;
+        margin-top: 12px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .event-insights-root {
+        padding: 24px;
+    }
+
+    .event-insights-header-row {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .event-insights-title {
+        font-size: 1.4rem;
+        text-align: left;
+    }
+
+    .event-insights-meta {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .event-insights-main-grid {
+        gap: 28px;
+        margin-top: 28px;
+    }
+
+    .event-insights-charts-row {
+        flex-direction: row;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .event-insights-card {
+        padding: 20px;
+    }
+
+    .event-chart {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .event-insights-legend-col {
+        margin-left: 18px;
+        margin-top: 0;
+        width: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .event-insights-root {
+        padding: 32px;
+    }
+
+    .event-insights-title {
+        font-size: 1.5rem;
+    }
+
+    .event-insights-meta {
+        font-size: 1.05rem;
+    }
+
+    .event-insights-main-grid {
+        gap: 32px;
+        margin-top: 32px;
+    }
+
+    .event-insights-charts-col {
+        flex-direction: row;
+        gap: 20px;
+        flex: 2;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+
+    .event-insights-card {
+        padding: 24px;
+    }
+
+    .event-insights-pie-card {
+        max-width: 350px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 900px) {
+    .event-insights-charts-row {
+        flex-direction: column;
+    }
+}

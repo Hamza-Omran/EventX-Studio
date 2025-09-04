@@ -1,0 +1,84 @@
+.booking-tickets-root {
+    padding: 15px;
+    background: #f7f7fa;
+    min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+    .booking-tickets-root {
+        padding: 25px 25px 25px 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .booking-tickets-root {
+        padding: 32px 32px 32px 90px;
+    }
+}
+
+.booking-tickets-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: stretch;
+}
+
+@media (min-width: 768px) {
+    .booking-tickets-filters {
+        flex-direction: row;
+        gap: 18px;
+        margin-bottom: 24px;
+        align-items: center;
+    }
+}
+
+.booking-tickets-search,
+.booking-tickets-dropdown {
+    border-radius: 12px;
+    border: 1.5px solid #e0e0e0;
+    padding: 12px 18px;
+    font-size: 1rem;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+
+    .booking-tickets-search,
+    .booking-tickets-dropdown {
+        padding: 8px 18px;
+        font-size: 1.1rem;
+        width: auto;
+    }
+
+    .booking-tickets-search {
+        width: 240px;
+    }
+
+    .booking-tickets-dropdown {
+        min-width: 180px;
+    }
+}
+
+.booking-tickets-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 12px;
+}
+
+@media (min-width: 768px) {
+    .booking-tickets-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .booking-tickets-list {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 24px;
+    }
+}

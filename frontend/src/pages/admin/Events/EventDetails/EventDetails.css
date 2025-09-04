@@ -1,0 +1,185 @@
+.event-details-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: "Inter", sans-serif;
+    color: #222;
+}
+
+.event-details-back {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.event-details-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.event-details-form {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.event-details-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.event-details-row.three-to-one div:first-child { flex: 3; }
+.event-details-row.three-to-one div:last-child { flex: 1; }
+
+.event-details-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-details-field.next-seats {
+    flex: 0;
+    justify-self: flex-end;
+}
+
+.event-details-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #555;
+}
+
+.event-details-field div {
+    background: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-radius: 0.6rem;
+    border: 1px solid #e0e0e0;
+    font-size: 0.95rem;
+    display: flex;
+}
+
+.event-details-field div svg {
+    margin-right: 0.5rem;
+    color: #555;
+}
+
+.event-details-description { margin-bottom: 1.5rem; }
+
+/* Seat section */
+.event-details-seat-section {
+    flex: 2;
+    background: #fafafa;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    border: 1px solid #e0e0e0;
+    max-width: 100%;
+}
+
+.event-details-seat-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.event-details-side-fields {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.event-details-actions {
+    text-align: right;
+    margin-top: 2rem;
+}
+
+.event-details-edit-btn,
+.event-details-insights-btn {
+    border: none;
+    border-radius: 0.6rem;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: #fff;
+}
+
+.event-details-edit-btn {
+    background: #f97316;
+}
+
+.event-details-edit-btn:hover {
+    background: #ea580c;
+}
+
+.event-details-insights-btn {
+    background: #2563eb;
+    margin-left: 1rem;
+}
+
+.event-details-insights-btn:hover {
+    background: #1e40af;
+}
+
+.event-details-book-btn {
+    background: #007aff;
+    color: #fff;
+    border: none;
+    padding: 18px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-block;
+    width: fit-content;
+    align-self: flex-end;
+}
+
+.event-details-book-btn:hover {
+    background: #005bb5;
+}
+
+.event-details-book-btn:disabled {
+    background: #ccc;
+    color: #888;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+    border: none;
+    opacity: 0.7;
+}
+
+.event-details-booking-msg {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #00c896;
+}
+
+
+@media (max-width: 767px) {
+    .event-details-page {
+        padding: 0;
+    }
+
+    .event-details-row {
+        flex-direction: column;
+    }
+
+    .event-details-seat-section {
+        padding: 0;
+    }
+
+    .event-details-actions button {
+        width: 100%;
+        margin: 15px 0 0;
+    }
+}

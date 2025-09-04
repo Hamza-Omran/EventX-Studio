@@ -1,0 +1,206 @@
+[
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df01"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5808"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c674"
+        },
+        "qrCode": "ticketqr1",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-01T10:15:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df02"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5808"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c674"
+        },
+        "qrCode": "ticketqr2",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-01T10:17:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df03"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5809"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c674"
+        },
+        "qrCode": "ticketqr3",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-02T08:45:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df04"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5809"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c674"
+        },
+        "qrCode": "ticketqr4",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-02T08:47:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df05"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5810"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c674"
+        },
+        "qrCode": "ticketqr5",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-03T09:05:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df06"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5810"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c674"
+        },
+        "qrCode": "ticketqr6",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-03T09:07:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df07"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5810"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c674"
+        },
+        "qrCode": "ticketqr7",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-03T09:10:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df08"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5811"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c90a"
+        },
+        "qrCode": "ticketqr8",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-04T11:25:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df09"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5811"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c378"
+        },
+        "qrCode": "ticketqr9",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-04T11:27:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df0a"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5812"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c637"
+        },
+        "qrCode": "ticketqr10",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-05T14:30:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df0b"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5812"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b1c97a"
+        },
+        "qrCode": "ticketqr11",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-05T14:33:00Z"
+        },
+        "__v": 0
+    },
+    {
+        "_id": {
+            "$oid": "68b5000011ce13017a18df0c"
+        },
+        "user": {
+            "$oid": "68b4fdccd9d185767bce5812"
+        },
+        "event": {
+            "$oid": "68b48b3e4c27fba675b2c679"
+        },
+        "qrCode": "ticketqr12",
+        "status": "Valid",
+        "timestamp": {
+            "$date": "2025-09-05T14:35:00Z"
+        },
+        "__v": 0
+    }
+]

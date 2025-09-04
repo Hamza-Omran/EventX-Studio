@@ -1,0 +1,60 @@
+import axios from "axios";
+
+const apiCache = new Map();
+const CACHE_DURATION = 30 * 1000;
+
+const api = axios.create({
+    baseURL: "http://localhost:5000/api",
+    withCredentials: true,
+});
+
+api.interceptors.request.use((config) => {
+    if (config.method === 'get' && config.url === '/auth/me') {
+        const cacheKey = config.url;
+        const cached = apiCache.get(cacheKey);
+
+        if (cached && (Date.now() - cached.timestamp < CACHE_DURATION)) {
+            return Promise.reject({
+                isCache: true,
+                data: cached.data
+            });
+        }
+    }
+
+    return config;
+});
+
+api.interceptors.response.use(
+    (response) => {
+        if (response.config.method === 'get' && response.config.url === '/auth/me') {
+            const cacheKey = response.config.url;
+            apiCache.set(cacheKey, {
+                data: response.data,
+                timestamp: Date.now()
+            });
+        }
+        return response;
+    },
+    (error) => {
+        if (error.isCache) {
+            return Promise.resolve({ data: error.data });
+        }
+        return Promise.reject(error);
+    }
+);
+
+api.clearCache = () => {
+    apiCache.clear();
+};
+
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response?.status === 401) {
+            api.clearCache();
+        }
+        return Promise.reject(error);
+    }
+);
+
+export default api;
