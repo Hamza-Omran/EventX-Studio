@@ -199,9 +199,16 @@
     .sidebar-toggle-left {
         z-index: 1002;
     }
+
+    .sidebar-add-btn {
+        padding: 10px 32px;
+        font-size: 0.95rem;
+    }
 }
 
-
+.sidebar-add-btn svg {
+    margin-right: 8px;
+}
 
 @media (min-width: 1351px) {
     .sidebar {
