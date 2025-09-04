@@ -49,7 +49,8 @@ const AddEvent = () => {
                     date: res.data.date?.slice(0, 10),
                     startTime,
                     endTime
-                });
+                });
+
                 const flatSeats = res.data.seatAllocation || [];
                 const rows = [];
                 for (let i = 0; i < flatSeats.length; i += 10) {
@@ -58,6 +59,10 @@ const AddEvent = () => {
                 setSeats(rows.length ? rows : seatGrid);
                 setSelectedTags(res.data.tags || []);
             });
+        } else {
+            setForm(initialState);
+            setSeats(seatGrid);
+            setSelectedTags([]);
         }
     }, [id, isEdit]);
 

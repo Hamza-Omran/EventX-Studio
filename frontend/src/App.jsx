@@ -36,10 +36,22 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path="events" element={<Events />}>
-            <Route path="add-event" element={<AddEvent />} />
-            <Route path="edit-event/:id" element={<AddEvent />} />
+            <Route path="add-event" element={
+              <ProtectedRoute requiredRole="admin">
+                <AddEvent />
+              </ProtectedRoute>
+            } />
+            <Route path="edit-event/:id" element={
+              <ProtectedRoute requiredRole="admin">
+                <AddEvent />
+              </ProtectedRoute>
+            } />
             <Route path="details/:id" element={<EventDetails />} />
-            <Route path="insights/:eventId" element={<EventInsights />} />
+            <Route path="insights/:eventId" element={
+              <ProtectedRoute requiredRole="admin">
+                <EventInsights />
+              </ProtectedRoute>
+            } />
           </Route>
           <Route path="attendees-insights" element={
             <ProtectedRoute requiredRole="admin">
