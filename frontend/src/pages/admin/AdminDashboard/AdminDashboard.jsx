@@ -182,26 +182,16 @@ const AdminDashboard = () => {
                 <div className="left-wing">
                     <div className="admin-dashboard-avatar">
                         {userInfo?.image ? (
-                            <>
-                                <img
-                                    src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${userInfo.image}`}
-                                    onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        e.target.nextElementSibling.style.display = 'block';
-                                    }}
-                                    alt={`${userInfo.name}'s profile`}
-                                    style={{ width: '35px', height: '35px', borderRadius: '50%' }}
-                                />
-                                <div
-                                    className="user-avatar-placeholder"
-                                    style={{ display: 'none', width: '35px', height: '35px' }}
-                                />
-                            </>
-                        ) : (
-                            <div
-                                className="user-avatar-placeholder"
-                                style={{ width: '35px', height: '35px' }}
+                            <img
+                                src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${userInfo.image}`}
+                                alt={`${userInfo.name}'s profile`}
+                                style={{ width: '35px', height: '35px', borderRadius: '50%' }}
                             />
+                        ) : (
+                            <svg width="35" height="35" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24">
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
+                            </svg>
                         )}
                     </div>
                     <div>

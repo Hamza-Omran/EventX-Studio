@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, useOutletContext } from "react-router-dom";
 import api from "@/api/axiosInstance";
 import LoadingDots from "@/components/LoadingDots/LoadingDots";
-import { userPlaceholder } from "@/utils/placeholders";
 import "./EditPerson.css";
 
 const EditPerson = () => {
@@ -169,10 +168,7 @@ const EditPerson = () => {
                             />
                         ) : currentImage ? (
                             <img
-                                src={currentImage ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${currentImage}` : userPlaceholder}
-                                onError={(e) => {
-                                    e.target.src = userPlaceholder;
-                                }}
+                                src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${currentImage}`}
                                 alt="Current profile"
                                 style={{
                                     width: '100%',

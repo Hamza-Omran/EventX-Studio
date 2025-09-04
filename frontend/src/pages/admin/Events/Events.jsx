@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate, Outlet, useLocation, useOutletContext } from "react-router-dom";
 import api from "@/api/axiosInstance";
 import LoadingDots from "@/components/LoadingDots/LoadingDots";
-import { userPlaceholder } from "@/utils/placeholders";
 import { FaEdit, FaTrash, FaInfoCircle, FaTimes, FaSlidersH, FaChevronDown } from "react-icons/fa";
 import './Events.css';
 import EventCard from "@/components/EventCard/EventCard";
@@ -145,32 +144,17 @@ const Events = () => {
                 <div className="header-user-profile">
                     {displayUser?.image ? (
                         <img
-                            src={displayUser.image && displayUser.image.startsWith('http') ? displayUser.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${displayUser.image}`}
-                            onError={(e) => {
-                                e.target.src = userPlaceholder;
-                            }}
+                            src={displayUser.image.startsWith('http') ? displayUser.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${displayUser.image}`}
                             alt={displayUser.name || 'User'}
                             className="header-user-image"
                             title={displayUser.name || 'User Profile'}
-                            onError={(e) => {
-                                e.target.src = userPlaceholder;
-                            }}
                         />
                     ) : (
-                        <div
-                            className="header-user-avatar user-avatar-fallback-visible"
-                            title={displayUser?.name || 'User Profile'}
-                        >
-                            <img src={userPlaceholder} alt="Default avatar" />
-                        </div>
+                        <svg width="35" height="35" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="4" />
+                            <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
+                        </svg>
                     )}
-                    <div
-                        className={`header-user-avatar ${displayUser?.image ? 'user-avatar-fallback-hidden' : 'user-avatar-fallback-visible'}`}
-                        title={displayUser?.name || 'User Profile'}
-                        style={{ display: displayUser?.image ? 'none' : 'flex' }}
-                    >
-                        {(displayUser?.name || 'U').charAt(0).toUpperCase()}
-                    </div>
                 </div>
 
                 <div className={`dashboard-actions${userRole === "user" ? " user-actions-end" : ""}`}>

@@ -75,28 +75,11 @@ const Person = ({ _id, name, email, age, gender, location, interests, image, cre
                     )}
                 </div>
                 <div className="person-image-container">
-                    {image ? (
-                        <>
-                            <img
-                                src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}`}
-                                alt={`${name}'s profile`}
-                                onError={(e) => {
-                                    e.target.style.display = 'none';
-                                    e.target.nextElementSibling.style.display = 'block';
-                                }}
-                                style={{ display: 'block', width: '40px', height: '40px', borderRadius: '50%' }}
-                            />
-                            <div
-                                className="user-avatar-placeholder"
-                                style={{ display: 'none', width: '40px', height: '40px' }}
-                            />
-                        </>
-                    ) : (
-                        <div
-                            className="user-avatar-placeholder"
-                            style={{ width: '40px', height: '40px' }}
-                        />
-                    )}
+                    <img
+                        src={image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}` : ''}
+                        alt={`${name}'s profile`}
+                        style={{ display: 'block', width: '40px', height: '40px', borderRadius: '50%' }}
+                    />
                 </div>
                 <div className="person-name">{name}</div>
                 <div className="person-email">{email}</div>
