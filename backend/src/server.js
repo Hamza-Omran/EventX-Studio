@@ -28,7 +28,7 @@ app.use('/images', express.static(path.join(__dirname, '../images')));
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://eventx-studio.vercel.app",
+        "https://event-x-studio-alpha.vercel.app",
         /\.vercel\.app$/
     ],
     credentials: true,
