@@ -1,7 +1,19 @@
 # EventX Studio - Event Management System
 ## Final Project Report
 
+# admin credentials:
+- email: admin@a.com 
+- password: Hamza1234
+- role: admin
+
+# user credentials:
+- email: omar@example.com
+- password: 123456
+- role: user
+
 # - **Live Demo**: https://event-x-studio-alpha.vercel.app
+
+
 
 ### Table of Contents
 1. [Executive Summary](#executive-summary)
