@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { protectAny } = require("../middleware/authMiddleware");
+const { protectAny, protectAdmin } = require("../middleware/authMiddleware");
 const Message = require("../models/Message");
 const User = require("../models/User");
 
-router.get("/users", protectAny, async (req, res) => {
+router.get("/users", protectAdmin, async (req, res) => {
     try {
         const users = await User.find({}, "_id name email");
         res.json(users);

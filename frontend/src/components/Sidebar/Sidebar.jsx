@@ -107,7 +107,7 @@ const Sidebar = forwardRef(({ sidebarOpen, setSidebarOpen, toggleOpacity, userIn
                                     <span className="sidebar-icon"><FaCog /></span>
                                     Settings
                                 </li>
-                                <li className="sidebar-navli" onClick={handleLogoutClick}>
+                                <li className="sidebar-navli logout" onClick={handleLogoutClick}>
                                     <span className="sidebar-icon"><FaSignOutAlt /></span>
                                     Logout
                                 </li>

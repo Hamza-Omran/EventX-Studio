@@ -86,7 +86,7 @@ router.get("/admin/dashboard-data", protectAdmin, async (req, res) => {
     }
 });
 
-router.get("/people/list", protectAny, async (req, res) => {
+router.get("/people/list", protectAdmin, async (req, res) => {
     try {
         const [users, admins] = await Promise.all([
             User.find({}, "_id name email image"),
