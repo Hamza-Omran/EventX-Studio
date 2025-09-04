@@ -79,7 +79,8 @@ router.post("/login", async (req, res) => {
         gender: user.gender,
         location: user.location,
         interests: user.interests,
-        image: user.image || ""
+        image: user.image || "",
+        token: token
       });
     } else {
       res.status(401).json({ message: "Invalid email or password" });
