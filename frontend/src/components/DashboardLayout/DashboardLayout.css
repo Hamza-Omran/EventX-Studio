@@ -18,7 +18,7 @@
     transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1350px) {
     .dashboard-container {
         overflow-x: hidden;
     }
@@ -28,6 +28,7 @@
         width: 100% !important;
         max-width: 100vw;
         transition: none;
+        padding: 16px 12px;
     }
 
     .dashboard-container.sidebar-open .dashboard-main {
@@ -35,22 +36,7 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-    .dashboard-main {
-        padding: 20px 16px;
-        border-radius: 20px 20px 0 0;
-        margin-left: 0;
-        width: 100%;
-        transition: margin-left 0.3s ease, width 0.3s ease;
-    }
-
-    .dashboard-container.sidebar-open .dashboard-main {
-        margin-left: 280px;
-        width: calc(100% - 280px);
-    }
-}
-
-@media (min-width: 1024px) {
+@media (min-width: 1351px) {
     .dashboard-main {
         padding: 24px 32px;
         margin-left: 0;
@@ -64,7 +50,7 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1350px) {
     .sidebar-overlay {
         position: fixed;
         top: 0;
