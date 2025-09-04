@@ -144,7 +144,10 @@ const Events = () => {
                 <div className="header-user-profile">
                     {displayUser?.image ? (
                         <img
-                            src={displayUser.image.startsWith('http') ? displayUser.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${displayUser.image}`}
+                            src={displayUser.image && displayUser.image.startsWith('http') ? displayUser.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${displayUser.image}`}
+                            onError={(e) => {
+                                e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4=';
+                            }}
                             alt={displayUser.name || 'User'}
                             className="header-user-image"
                             title={displayUser.name || 'User Profile'}

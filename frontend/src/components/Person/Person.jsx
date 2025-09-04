@@ -75,17 +75,14 @@ const Person = ({ _id, name, email, age, gender, location, interests, image, cre
                     )}
                 </div>
                 <div className="person-image-container">
-                    {image ? (
-                        <img
-                            src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}`}
-                            alt={`${name}'s profile`}
-                        />
-                    ) : (
-                        <svg width="40" height="40" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24">
-                            <circle cx="12" cy="8" r="4" />
-                            <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
-                        </svg>
-                    )}
+                    <img
+                        src={image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}` : ''}
+                        alt={`${name}'s profile`}
+                        onError={(e) => {
+                            e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4=';
+                        }}
+                        style={{ display: 'block', width: '40px', height: '40px' }}
+                    />
                 </div>
                 <div className="person-name">{name}</div>
                 <div className="person-email">{email}</div>

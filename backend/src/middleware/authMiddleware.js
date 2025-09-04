@@ -8,12 +8,8 @@ const protectAdmin = async (req, res, next) => {
     // Also check Authorization header if cookie is not present
     if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         token = req.headers.authorization.split(" ")[1];
-        console.log('Using Authorization header token:', token ? 'token found' : 'no token');
-    } else if (token) {
-        console.log('Using cookie token:', token ? 'token found' : 'no token');
     }
     
-    console.log('protectAdmin - token found:', !!token);
     if (!token) return res.status(401).json({ message: "Not authorized, no token" });
 
     try {
@@ -34,12 +30,8 @@ const protectUser = async (req, res, next) => {
     // Also check Authorization header if cookie is not present
     if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         token = req.headers.authorization.split(" ")[1];
-        console.log('protectUser - Using Authorization header token:', token ? 'token found' : 'no token');
-    } else if (token) {
-        console.log('protectUser - Using cookie token:', token ? 'token found' : 'no token');
     }
     
-    console.log('protectUser - token found:', !!token);
     if (!token) return res.status(401).json({ message: "Not authorized, no token" });
 
     try {
@@ -59,12 +51,8 @@ const protectAny = async (req, res, next) => {
     // Also check Authorization header if cookie is not present
     if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         token = req.headers.authorization.split(" ")[1];
-        console.log('protectAny - Using Authorization header token:', token ? 'token found' : 'no token');
-    } else if (token) {
-        console.log('protectAny - Using cookie token:', token ? 'token found' : 'no token');
     }
     
-    console.log('protectAny - token found:', !!token);
     if (!token) return res.status(401).json({ message: "Not authorized, no token" });
 
     try {

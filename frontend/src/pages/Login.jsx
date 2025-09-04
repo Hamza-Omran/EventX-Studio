@@ -27,15 +27,11 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await api.post("/auth/login", form);
-            console.log('Login response:', response.data);
 
             // Store token in localStorage for authorization headers
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data));
-                console.log('Token stored:', response.data.token);
-            } else {
-                console.log('No token in response:', response.data);
             }
 
             if (form.role === "admin") {
