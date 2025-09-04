@@ -1,14 +1,7 @@
 const dotenv = require("dotenv");
-// Only load .env file if it exists (for local development)
 if (process.env.NODE_ENV !== "production") {
     dotenv.config();
 }
-
-console.log("🚀 Server Environment Check:");
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("MONGO_URI:", process.env.MONGO_URI ? "✅ SET" : "❌ MISSING");
-console.log("JWT_SECRET:", process.env.JWT_SECRET ? "✅ SET" : "❌ MISSING");
-console.log("PORT:", process.env.PORT);
 
 const express = require("express");
 const cors = require("cors");
@@ -55,5 +48,5 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`\n\nServer running on port ${PORT}\n\n`);
+    console.log(`Server running on port ${PORT}`);
 });
