@@ -27,8 +27,10 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Navigate to="admin-main-page" replace />} />
           <Route path="admin-main-page" element={<AdminDashboard />} />
           <Route path="events" element={<Events />}>
+            <Route index element={<div>Events List</div>} />
             <Route path="add-event" element={<AddEvent />} />
             <Route path="edit-event/:id" element={<AddEvent />} />
             <Route path="details/:id" element={<EventDetails />} />
@@ -44,10 +46,9 @@ function App() {
           <Route path="manage-people/add-admin" element={<AddAdmin />} />
           <Route path="manage-people/edit/:type/:id" element={<EditPerson />} />
           <Route path="analytics-reports" element={<AnalyticsReports />} />
-          { }
         </Route>
-        { }
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
   );
