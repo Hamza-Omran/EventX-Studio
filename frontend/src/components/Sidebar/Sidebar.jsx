@@ -8,9 +8,12 @@ import {
     FaHeadset,
     FaBell,
     FaCog,
+    FaBullhorn,
+    FaFolderOpen,
     FaUserCog,
     FaSignOutAlt,
     FaBars,
+    FaRocket,
 } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import api from '../../api/axiosInstance';
@@ -107,7 +110,7 @@ const Sidebar = forwardRef(({ sidebarOpen, setSidebarOpen, toggleOpacity, userIn
                                     <span className="sidebar-icon"><FaCog /></span>
                                     Settings
                                 </li>
-                                <li className="sidebar-navli logout" onClick={handleLogoutClick}>
+                                <li className="sidebar-navli" onClick={handleLogoutClick}>
                                     <span className="sidebar-icon"><FaSignOutAlt /></span>
                                     Logout
                                 </li>

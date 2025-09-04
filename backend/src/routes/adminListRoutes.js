@@ -5,7 +5,7 @@ const Admin = require("../models/Admin");
 const upload = require("../config/multer.js");
 const { saveImage, deleteImage, updateImage } = require("../utils/imageUtils.js");
 
-router.get("/admins", protectAdmin, async (req, res) => {
+router.get("/admins", protectAny, async (req, res) => {
     try {
         const admins = await Admin.find({}, "_id name email image");
         res.json(admins);

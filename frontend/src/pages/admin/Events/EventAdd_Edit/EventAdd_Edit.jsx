@@ -59,10 +59,6 @@ const AddEvent = () => {
                 setSeats(rows.length ? rows : seatGrid);
                 setSelectedTags(res.data.tags || []);
             });
-        } else {
-            setForm(initialState);
-            setSeats(seatGrid);
-            setSelectedTags([]);
         }
     }, [id, isEdit]);
 

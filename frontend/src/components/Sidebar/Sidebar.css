@@ -203,9 +203,19 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .sidebar {
-        width: 280px;
-        min-width: 280px;
-        max-width: 280px;
+        width: 100vw;
+        min-width: 0;
+        max-width: 100vw;
+    }
+
+    .sidebar-logo {
+        font-size: 1.4rem;
+        margin-left: 50px;
+        margin-top: 30px;
+    }
+
+    .sidebar-nav {
+        padding: 0 16px;
     }
 
     .sidebar-add-btn {
