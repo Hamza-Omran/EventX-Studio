@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import DashboardLayout from "./components/DashboardLayout/DashboardLayout";
@@ -22,6 +22,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
@@ -43,9 +44,9 @@ function App() {
           <Route path="manage-people/add-admin" element={<AddAdmin />} />
           <Route path="manage-people/edit/:type/:id" element={<EditPerson />} />
           <Route path="analytics-reports" element={<AnalyticsReports />} />
-          {}
+          { }
         </Route>
-        {}
+        { }
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </Router>
