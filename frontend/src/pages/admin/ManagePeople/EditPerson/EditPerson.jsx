@@ -20,8 +20,6 @@ const EditPerson = () => {
         image: ""
     });
     const [error, setError] = useState("");
-    const [message, setMessage] = useState("");
-    const [messageType, setMessageType] = useState("");
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -81,12 +79,10 @@ const EditPerson = () => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Validate file type
             if (!file.type.startsWith('image/')) {
                 setError("Please select a valid image file");
                 return;
             }
-            // Validate file size (5MB limit)
             if (file.size > 5 * 1024 * 1024) {
                 setError("Image size must be less than 5MB");
                 return;
@@ -100,12 +96,11 @@ const EditPerson = () => {
     const handleRemoveImage = () => {
         setSelectedImage(null);
         setImagePreview("");
-        setCurrentImage(""); // Also clear the current image to indicate removal
+        setCurrentImage("");
     };
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            // Create FormData for file upload
             const formData = new FormData();
             formData.append('name', form.name);
             formData.append('email', form.email);
@@ -121,7 +116,6 @@ const EditPerson = () => {
             if (selectedImage) {
                 formData.append('image', selectedImage);
             } else if (!currentImage) {
-                // If currentImage is empty, it means user wants to remove the image
                 formData.append('removeImage', 'true');
             }
 
@@ -192,7 +186,6 @@ const EditPerson = () => {
                         )}
                     </div>
 
-                    {/* Image Upload */}
                     <input
                         type="file"
                         accept="image/*"

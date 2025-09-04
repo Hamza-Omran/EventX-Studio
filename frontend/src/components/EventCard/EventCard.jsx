@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
     FaEdit,
     FaTrash,
@@ -9,7 +9,6 @@ import {
     FaArrowRight
 } from "react-icons/fa";
 import "./EventCard.css";
-import api from "@/api/axiosInstance";
 import { useOutletContext } from "react-router-dom";
 
 const EventCard = ({ event, menuOpen, setMenuOpen, confirmDelete, setConfirmDelete, handleDelete, navigate }) => {

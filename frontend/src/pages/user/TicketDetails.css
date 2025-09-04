@@ -1,4 +1,3 @@
-/* Ticket Details Page - Mobile First Responsive */
 .ticket-details-container {
     max-width: 100%;
     margin: 15px;
@@ -9,7 +8,6 @@
     font-family: 'Inter', sans-serif;
 }
 
-/* Tablet and up */
 @media (min-width: 768px) {
     .ticket-details-container {
         max-width: 450px;
@@ -19,7 +17,6 @@
     }
 }
 
-/* Desktop and up */
 @media (min-width: 1024px) {
     .ticket-details-container {
         max-width: 500px;
@@ -39,7 +36,6 @@
     margin-top: 15px;
 }
 
-/* Tablet and up */
 @media (min-width: 768px) {
     .ticket-details-card {
         gap: 16px;
@@ -49,7 +45,6 @@
     }
 }
 
-/* Combined loading and error styles - Mobile First */
 .ticket-details-loading,
 .ticket-details-error {
     text-align: center;
@@ -58,7 +53,6 @@
     color: #ff5252;
 }
 
-/* Tablet and up */
 @media (min-width: 768px) {
 
     .ticket-details-loading,

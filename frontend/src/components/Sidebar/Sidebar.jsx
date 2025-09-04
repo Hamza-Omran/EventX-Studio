@@ -8,12 +8,9 @@ import {
     FaHeadset,
     FaBell,
     FaCog,
-    FaBullhorn,
-    FaFolderOpen,
     FaUserCog,
     FaSignOutAlt,
     FaBars,
-    FaRocket,
 } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import api from '../../api/axiosInstance';

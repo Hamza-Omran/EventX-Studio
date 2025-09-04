@@ -15,9 +15,6 @@ const MyTickets = () => {
             .finally(() => setLoading(false));
     }, []);
 
-    const handleCheckIn = async (ticketId) => {
-        alert("Check-in validation for ticket " + ticketId);
-    };
 
     if (loading) return <LoadingDots />;
     if (error) return <div>{error}</div>;

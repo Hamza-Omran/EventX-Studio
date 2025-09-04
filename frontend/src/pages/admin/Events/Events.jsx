@@ -37,16 +37,12 @@ const Events = () => {
             try {
                 const res = await api.get("/optimized/events/list");
                 setEvents(res.data);
-            } catch (err) {
-                console.error("[fetchEvents] Error:", err);
+            } catch {
                 try {
                     const res = await api.get("/events");
                     setEvents(res.data);
-                } catch (fallbackErr) {
-                    console.error("[fetchEvents] Fallback Error:", fallbackErr);
-                    if (fallbackErr.response) {
-                        console.log("[fetchEvents] Response:", fallbackErr.response.data);
-                    }
+                } catch {
+                    setEvents([]);
                 }
             } finally {
                 setLoading(false);
@@ -140,115 +136,115 @@ const Events = () => {
 
     return (
         <>
-            <div className="dashboard-header">
-                <div className="header-user-profile">
-                    {displayUser?.image ? (
-                        <img
-                            src={displayUser.image.startsWith('http') ? displayUser.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${displayUser.image}`}
-                            alt={displayUser.name || 'User'}
-                            className="header-user-image"
-                            title={displayUser.name || 'User Profile'}
-                        />
-                    ) : (
-                        <svg width="35" height="35" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24">
-                            <circle cx="12" cy="8" r="4" />
-                            <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
-                        </svg>
-                    )}
-                </div>
+            {isEventsPage && (
+                <>
+                    <div className="dashboard-header">
+                        <div className="header-user-profile">
+                            {displayUser?.image ? (
+                                <img
+                                    src={displayUser.image.startsWith('http') ? displayUser.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${displayUser.image}`}
+                                    alt={displayUser.name || 'User'}
+                                    className="header-user-image"
+                                    title={displayUser.name || 'User Profile'}
+                                />
+                            ) : (
+                                <svg width="35" height="35" fill="none" stroke="#aaa" strokeWidth="2" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
+                                </svg>
+                            )}
+                        </div>
 
-                <div className={`dashboard-actions${userRole === "user" ? " user-actions-end" : ""}`}>
-                    {userRole === "admin" && (
-                        <div className="left-wing">
-                            <button className="new-event-btn" onClick={() => navigate("/dashboard/events/add-event")}>+ New Event</button>
-                            <button className="insights-btn" onClick={() => navigate("/dashboard/attendees-insights")}>Attendee Insights</button>
-                        </div>
-                    )}
-                    <div className="right-wing">
-                        <div className="dashboard-actions-top">
-                            <button className="filter-btn" onClick={() => setFilterOpen(!filterOpen)}>
-                                <FaSlidersH className="filter-slider-icon" />
-                                <span className="filter-text">Filter</span>
-                                <FaChevronDown className="filter-chevron-icon" />
-                            </button>
-                            <input className="search-input" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} />
-                        </div>
-                        <div className="dashboard-actions-bottom">
-                            <div className="sort">
-                                <label htmlFor="sort-select" className="sort-label">Sort By:</label>
-                                <select id="sort-select" className="sort-select" value={sortBy} onChange={e => setSortBy(e.target.value)}>
-                                    <option value="Status">Status</option>
-                                    <option value="Date">Date</option>
-                                </select>
+                        <div className={`dashboard-actions${userRole === "user" ? " user-actions-end" : ""}`}>
+                            {userRole === "admin" && (
+                                <div className="left-wing">
+                                    <button className="new-event-btn" onClick={() => navigate("/dashboard/events/add-event")}>+ New Event</button>
+                                    <button className="insights-btn" onClick={() => navigate("/dashboard/attendees-insights")}>Attendee Insights</button>
+                                </div>
+                            )}
+                            <div className="right-wing">
+                                <div className="dashboard-actions-top">
+                                    <button className="filter-btn" onClick={() => setFilterOpen(!filterOpen)}>
+                                        <FaSlidersH className="filter-slider-icon" />
+                                        <span className="filter-text">Filter</span>
+                                        <FaChevronDown className="filter-chevron-icon" />
+                                    </button>
+                                    <input className="search-input" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)} />
+                                </div>
+                                <div className="dashboard-actions-bottom">
+                                    <div className="sort">
+                                        <label htmlFor="sort-select" className="sort-label">Sort By:</label>
+                                        <select id="sort-select" className="sort-select" value={sortBy} onChange={e => setSortBy(e.target.value)}>
+                                            <option value="Status">Status</option>
+                                            <option value="Date">Date</option>
+                                        </select>
+                                    </div>
+                                    <input type="date" className="date-picker" value={filterDate} onChange={e => setFilterDate(e.target.value)} />
+                                </div>
                             </div>
-                            <input type="date" className="date-picker" value={filterDate} onChange={e => setFilterDate(e.target.value)} />
                         </div>
                     </div>
-                </div>
-            </div>
-            {
-                filterOpen && (
-                    <div className="filter-menu" ref={filterMenuRef}>
-                        <div className="filter-menu-columns">
-                            <div className="filter-menu-col">
-                                <div className="filter-section">
-                                    <label>Tags</label>
-                                    <div className="filter-tags-combo" ref={tagsMenuRef}>
-                                        <input type="text" value={tagInput} onChange={e => setTagInput(e.target.value)} placeholder="Type to search tags..." />
-                                        {tagInput && (
-                                            <div className="filter-tags-list">
-                                                {TAG_OPTIONS.filter(tag => tag.toLowerCase().includes(tagInput.toLowerCase()) && !filter.tags.includes(tag)).map(tag => (
-                                                    <div key={tag} className="filter-tag-option" onClick={() => { setFilter({ ...filter, tags: [...filter.tags, tag] }); setTagInput(""); }}>
-                                                        {tag}
+                    {
+                        filterOpen && (
+                            <div className="filter-menu" ref={filterMenuRef}>
+                                <div className="filter-menu-columns">
+                                    <div className="filter-menu-col">
+                                        <div className="filter-section">
+                                            <label>Tags</label>
+                                            <div className="filter-tags-combo" ref={tagsMenuRef}>
+                                                <input type="text" value={tagInput} onChange={e => setTagInput(e.target.value)} placeholder="Type to search tags..." />
+                                                {tagInput && (
+                                                    <div className="filter-tags-list">
+                                                        {TAG_OPTIONS.filter(tag => tag.toLowerCase().includes(tagInput.toLowerCase()) && !filter.tags.includes(tag)).map(tag => (
+                                                            <div key={tag} className="filter-tag-option" onClick={() => { setFilter({ ...filter, tags: [...filter.tags, tag] }); setTagInput(""); }}>
+                                                                {tag}
+                                                            </div>
+                                                        ))}
                                                     </div>
+                                                )}
+                                            </div>
+                                            <div className="filter-tags-selected">
+                                                {filter.tags.map(tag => (
+                                                    <span key={tag} className="filter-tag-chip">
+                                                        {tag}
+                                                        <button type="button" className="filter-tag-remove" onClick={() => setFilter({ ...filter, tags: filter.tags.filter(t => t !== tag) })}>&times;</button>
+                                                    </span>
                                                 ))}
                                             </div>
-                                        )}
+                                        </div>
+                                        <div className="filter-section">
+                                            <label>Place</label>
+                                            <input type="text" value={filter.place} onChange={e => setFilter({ ...filter, place: e.target.value })} />
+                                        </div>
+                                        <div className="filter-section">
+                                            <label>Money</label>
+                                            <input type="number" value={filter.money} onChange={e => setFilter({ ...filter, money: e.target.value })} />
+                                        </div>
+                                        <div className="filter-section">
+                                            <label>Seats</label>
+                                            <input type="number" value={filter.seats} onChange={e => setFilter({ ...filter, seats: e.target.value })} />
+                                        </div>
                                     </div>
-                                    <div className="filter-tags-selected">
-                                        {filter.tags.map(tag => (
-                                            <span key={tag} className="filter-tag-chip">
-                                                {tag}
-                                                <button type="button" className="filter-tag-remove" onClick={() => setFilter({ ...filter, tags: filter.tags.filter(t => t !== tag) })}>&times;</button>
-                                            </span>
-                                        ))}
+                                    <div className="filter-menu-col">
+                                        <div className="filter-section">
+                                            <label>Tickets</label>
+                                            <input type="number" value={filter.tickets} onChange={e => setFilter({ ...filter, tickets: e.target.value })} />
+                                        </div>
+                                        <div className="filter-section">
+                                            <label>Status</label>
+                                            <div className="check-boxes">
+                                                <label><input type="checkbox" checked={filter.status.includes("Up-Coming")} onChange={e => setFilter({ ...filter, status: e.target.checked ? [...filter.status, "Up-Coming"] : filter.status.filter(s => s !== "Up-Coming") })} /> Up-Coming</label>
+                                                <label><input type="checkbox" checked={filter.status.includes("Pending")} onChange={e => setFilter({ ...filter, status: e.target.checked ? [...filter.status, "Pending"] : filter.status.filter(s => s !== "Pending") })} /> Pending</label>
+                                                <label><input type="checkbox" checked={filter.status.includes("Closed")} onChange={e => setFilter({ ...filter, status: e.target.checked ? [...filter.status, "Closed"] : filter.status.filter(s => s !== "Closed") })} /> Closed</label>
+                                            </div>
+                                        </div>
+                                        <button className="filter-reset-btn" onClick={() => { setFilter({ tags: [], place: "", money: "", seats: "", tickets: "", status: [] }); setTagInput(""); setFilterOpen(false); }}>Reset</button>
                                     </div>
-                                </div>
-                                <div className="filter-section">
-                                    <label>Place</label>
-                                    <input type="text" value={filter.place} onChange={e => setFilter({ ...filter, place: e.target.value })} />
-                                </div>
-                                <div className="filter-section">
-                                    <label>Money</label>
-                                    <input type="number" value={filter.money} onChange={e => setFilter({ ...filter, money: e.target.value })} />
-                                </div>
-                                <div className="filter-section">
-                                    <label>Seats</label>
-                                    <input type="number" value={filter.seats} onChange={e => setFilter({ ...filter, seats: e.target.value })} />
                                 </div>
                             </div>
-                            <div className="filter-menu-col">
-                                <div className="filter-section">
-                                    <label>Tickets</label>
-                                    <input type="number" value={filter.tickets} onChange={e => setFilter({ ...filter, tickets: e.target.value })} />
-                                </div>
-                                <div className="filter-section">
-                                    <label>Status</label>
-                                    <div className="check-boxes">
-                                        <label><input type="checkbox" checked={filter.status.includes("Up-Coming")} onChange={e => setFilter({ ...filter, status: e.target.checked ? [...filter.status, "Up-Coming"] : filter.status.filter(s => s !== "Up-Coming") })} /> Up-Coming</label>
-                                        <label><input type="checkbox" checked={filter.status.includes("Pending")} onChange={e => setFilter({ ...filter, status: e.target.checked ? [...filter.status, "Pending"] : filter.status.filter(s => s !== "Pending") })} /> Pending</label>
-                                        <label><input type="checkbox" checked={filter.status.includes("Closed")} onChange={e => setFilter({ ...filter, status: e.target.checked ? [...filter.status, "Closed"] : filter.status.filter(s => s !== "Closed") })} /> Closed</label>
-                                    </div>
-                                </div>
-                                <button className="filter-reset-btn" onClick={() => { setFilter({ tags: [], place: "", money: "", seats: "", tickets: "", status: [] }); setTagInput(""); setFilterOpen(false); }}>Reset</button>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
-            <div className="events-dashboard">
-                {isEventsPage && (
-                    <>
+                        )
+                    }
+                    <div className="events-dashboard">
                         <div className="event-status-tabs">
                             <span className={`tab upcoming${selectedStatus === "Up-Coming" ? " active" : ""}`} onClick={() => selectedStatus === "Up-Coming" ? null : setSelectedStatus("Up-Coming")}>
                                 {selectedStatus === "Up-Coming" ? <FaTimes className="tab-x" onClick={() => setSelectedStatus("All")} /> : <span className="tab-dot tab-dot-blue">●</span>} Up-Coming Events
@@ -276,12 +272,10 @@ const Events = () => {
                                 </div>
                             ))}
                         </div>
-                    </>
-                )}
-                <Outlet context={{ userInfo }} />
-            </div>
+                    </div>
+                </>
+            )}
+            <Outlet context={{ userInfo }} />
         </>
     );
-};
-
-export default Events;
+}; export default Events;
