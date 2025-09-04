@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import api from "@/api/axiosInstance";
+import { userPlaceholder } from "@/utils/placeholders";
 import "./Person.css";
 
 const Person = ({ _id, name, email, age, gender, location, interests, image, createdAt, updatedAt, onEdit, onDelete, type, currentAdminId }) => {
@@ -76,10 +77,10 @@ const Person = ({ _id, name, email, age, gender, location, interests, image, cre
                 </div>
                 <div className="person-image-container">
                     <img
-                        src={image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}` : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4='}
+                        src={image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}` : userPlaceholder}
                         alt={`${name}'s profile`}
                         onError={(e) => {
-                            e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4=';
+                            e.target.src = userPlaceholder;
                         }}
                         style={{ display: 'block', width: '40px', height: '40px' }}
                     />

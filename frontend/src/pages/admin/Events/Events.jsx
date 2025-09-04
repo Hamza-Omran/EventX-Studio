@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate, Outlet, useLocation, useOutletContext } from "react-router-dom";
 import api from "@/api/axiosInstance";
 import LoadingDots from "@/components/LoadingDots/LoadingDots";
+import { userPlaceholder } from "@/utils/placeholders";
 import { FaEdit, FaTrash, FaInfoCircle, FaTimes, FaSlidersH, FaChevronDown } from "react-icons/fa";
 import './Events.css';
 import EventCard from "@/components/EventCard/EventCard";
@@ -146,21 +147,27 @@ const Events = () => {
                         <img
                             src={displayUser.image && displayUser.image.startsWith('http') ? displayUser.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${displayUser.image}`}
                             onError={(e) => {
-                                e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4=';
+                                e.target.src = userPlaceholder;
                             }}
                             alt={displayUser.name || 'User'}
                             className="header-user-image"
                             title={displayUser.name || 'User Profile'}
                             onError={(e) => {
-                                console.error("Image failed to load:", e.target.src);
-                                e.target.style.display = 'none';
-                                e.target.nextElementSibling.style.display = 'flex';
+                                e.target.src = userPlaceholder;
                             }}
                         />
-                    ) : null}
+                    ) : (
+                        <div
+                            className="header-user-avatar user-avatar-fallback-visible"
+                            title={displayUser?.name || 'User Profile'}
+                        >
+                            <img src={userPlaceholder} alt="Default avatar" />
+                        </div>
+                    )}
                     <div
                         className={`header-user-avatar ${displayUser?.image ? 'user-avatar-fallback-hidden' : 'user-avatar-fallback-visible'}`}
                         title={displayUser?.name || 'User Profile'}
+                        style={{ display: displayUser?.image ? 'none' : 'flex' }}
                     >
                         {(displayUser?.name || 'U').charAt(0).toUpperCase()}
                     </div>

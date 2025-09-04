@@ -5,6 +5,7 @@ import { FaUsers, FaFileInvoice, FaMoneyBillWave } from "react-icons/fa";
 import api from "@/api/axiosInstance";
 import SeatAllocation from "@/components/SeatAllocation/SeatAllocation";
 import LoadingDots from "@/components/LoadingDots/LoadingDots";
+import { userPlaceholder } from "@/utils/placeholders";
 import { Pie, Line } from "react-chartjs-2";
 import { calculateDashboardStats } from "@/utils/calculationUtils";
 import {
@@ -183,9 +184,9 @@ const AdminDashboard = () => {
                     <div className="admin-dashboard-avatar">
                         {userInfo?.image ? (
                             <img
-                                src={userInfo.image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${userInfo.image}` : 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4='}
+                                src={userInfo.image ? `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${userInfo.image}` : userPlaceholder}
                                 onError={(e) => {
-                                    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLXdpZHRoPSIyIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxjaXJjbGUgY3g9IjEyIiBjeT0iOCIgcj0iNCIvPjxwYXRoIGQ9Ik00IDIwYzAtNCA4LTQgOC00czggMCA4IDQiLz48L3N2Zz4=';
+                                    e.target.src = userPlaceholder;
                                 }}
                                 alt={`${userInfo.name}'s profile`}
                             />

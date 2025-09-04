@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import api from "@/api/axiosInstance";
+import LoadingDots from "@/components/LoadingDots/LoadingDots";
 import "./Notifications.css";
 
 const Notifications = () => {
     const { userInfo } = useOutletContext();
     const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (userInfo) {
-            api.get(`/messages/received`).then(res => setMessages(res.data));
+            setLoading(true);
+            api.get(`/messages/received`)
+                .then(res => {
+                    setMessages(res.data);
+                    setLoading(false);
+                })
+                .catch(err => {
+                    console.error('Error loading notifications:', err);
+                    setLoading(false);
+                });
         }
     }, [userInfo]);
 
@@ -17,7 +28,12 @@ const Notifications = () => {
         <div className="notifications-root">
             <h2 className="notifications-title">Notifications</h2>
             <div className="notifications-list">
-                {messages.length === 0 ? (
+                {loading ? (
+                    <div className="notifications-loading">
+                        <LoadingDots />
+                        <span>Loading notifications...</span>
+                    </div>
+                ) : messages.length === 0 ? (
                     <div className="notifications-empty">No notifications yet.</div>
                 ) : (
                     messages.map((msg, idx) => (
