@@ -32,6 +32,10 @@ const AdminDashboard = () => {
     const [avatarImageError, setAvatarImageError] = useState(false);
 
     useEffect(() => {
+        setAvatarImageError(false);
+    }, [userInfo?.image]);
+
+    useEffect(() => {
         const loadDashboard = async () => {
             try {
                 const dashboardRes = await api.get("/optimized/admin/dashboard-data");
