@@ -12,6 +12,7 @@
 - role: user
 
 # - **Live Demo**: https://event-x-studio-alpha.vercel.app
+<img width="1889" height="816" alt="image" src="https://github.com/user-attachments/assets/630edb13-f4a2-47f3-bbde-1cb5ac801ef5" />
 
 
 
