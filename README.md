@@ -7,7 +7,7 @@
 - role: admin
 
 # user credentials:
-- email: omar@example.com
+- email: omar@example.com 
 - password: 123456
 - role: user
 
