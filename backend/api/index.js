@@ -24,64 +24,38 @@ async function connectDB() {
 
     await mongoose.connect(mongoUri);
     isConnected = true;
-    console.log("MongoDB connected");
 }
 
-// Database middleware
-app.use(async (req, res, next) => {
-    try {
-        await connectDB();
-        next();
-    } catch (error) {
-        console.error("DB Error:", error.message);
-        res.status(500).json({ message: "Database connection failed", error: error.message });
-    }
-});
-
-// Import and use routes
-const authRoutes = require("../src/routes/authRoutes.js");
-const adminAuthRoutes = require("../src/routes/adminAuth.js");
-const eventRoutes = require("../src/routes/eventRoutes.js");
-const bookingAndTicketRoutes = require("../src/routes/bookingAndTicketRoutes.js");
-const analyticsRoutes = require("../src/routes/analyticsRoutes.js");
-const messageRoutes = require("../src/routes/messageRoutes.js");
-const adminListRoutes = require("../src/routes/adminListRoutes.js");
-const dashboardStatsRoutes = require("../src/routes/dashboardStatsRoutes.js");
-const optimizedRoutes = require("../src/routes/optimizedRoutes.js");
-
-app.use("/api/auth", authRoutes);
-app.use("/api/admin-auth", adminAuthRoutes);
-app.use("/api/events", eventRoutes);
-app.use("/api", bookingAndTicketRoutes);
-app.use("/api", analyticsRoutes);
-app.use("/api", messageRoutes);
-app.use("/api", adminListRoutes);
-app.use("/api", dashboardStatsRoutes);
-app.use("/api/optimized", optimizedRoutes);
-
-// Health check
+// Health check (no DB required)
 app.get("/api/health", (req, res) => {
     res.json({
         status: "ok",
-        mongodb: isConnected ? "connected" : "disconnected",
+        env: {
+            MONGO_URI: process.env.MONGO_URI ? "set" : "NOT SET",
+            JWT_SECRET: process.env.JWT_SECRET ? "set" : "NOT SET"
+        },
         timestamp: new Date().toISOString()
     });
 });
 
+// Test DB connection
+app.get("/api/test-db", async (req, res) => {
+    try {
+        await connectDB();
+        res.json({ status: "connected", message: "MongoDB works!" });
+    } catch (error) {
+        res.status(500).json({ status: "failed", error: error.message });
+    }
+});
+
 // Root
 app.get("/", (req, res) => {
-    res.json({ message: "EventX Studio API", status: "running" });
+    res.json({ message: "EventX Studio API" });
 });
 
 // 404
 app.use((req, res) => {
     res.status(404).json({ path: req.path, message: "Not found" });
-});
-
-// Error handler
-app.use((err, req, res, next) => {
-    console.error("Error:", err.message);
-    res.status(500).json({ message: "Server error", error: err.message });
 });
 
 module.exports = app;
