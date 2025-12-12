@@ -28,7 +28,7 @@ app.use(cookieParser());
 // CORS configuration
 const corsOptions = {
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
+
         if (!origin) return callback(null, true);
 
         const allowedOrigins = [
@@ -38,11 +38,10 @@ const corsOptions = {
             "https://event-x-studio-slg5.vercel.app"
         ];
 
-        // Check if origin matches allowed list or is a vercel.app subdomain
         if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
             callback(null, true);
         } else {
-            callback(null, true); // Allow all origins for now
+            callback(null, true);
         }
     },
     credentials: true,
@@ -53,10 +52,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Handle preflight requests explicitly
 app.options('*', cors(corsOptions));
 
-// Note: Images are now stored in Cloudinary (URLs stored in database)
 
 // API Routes
 app.use("/api/auth", authRoutes);
