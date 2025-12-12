@@ -6,7 +6,8 @@ const DataTable = ({ title, data }) => (
             <thead>
                 <tr>
                     <th style={{ textAlign: "left", padding: 8 }}>Location</th>
-                    <th style={{ textAlign: "right", padding: 8 }}>Count</th>
+                      return Promise.reject(error);
+      <th style={{ textAlign: "right", padding: 8 }}>Count</th>
                 </tr>
             </thead>
             <tbody>

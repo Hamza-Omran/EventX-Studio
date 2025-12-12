@@ -20,7 +20,7 @@ router.post("/events/:id/book", protectAny, async (req, res) => {
         });
         
         const tempTicketId = new ObjectId();
-        const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+        const frontendUrl = process.env.FRONTEND_URL;
         const qrData = `${frontendUrl}/dashboard/tickets/details/${tempTicketId}`;
         const qrCode = await QRCode.toDataURL(qrData);
         const ticket = await Ticket.create({ _id: tempTicketId, user: req.user._id, event: event._id, qrCode, status: "Valid" });
@@ -103,7 +103,7 @@ router.post("/tickets", protectAdmin, async (req, res) => {
             return res.status(400).json({ message: "user and event are required" });
         }
         const tempTicketId = new mongoose.Types.ObjectId();
-        const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+        const frontendUrl = process.env.FRONTEND_URL;
         const qrData = `${frontendUrl}/dashboard/tickets/details/${tempTicketId}`;
         const qrCode = await QRCode.toDataURL(qrData);
         const ticket = await Ticket.create({ _id: tempTicketId, user, event, qrCode, status, timestamp });

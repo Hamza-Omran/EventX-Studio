@@ -24,7 +24,7 @@ router.post("/register", upload.single('image'), async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const imagePath = req.file ? saveImage(req.file) : '';
+    const imagePath = req.file ? await saveImage(req.file) : '';
     const user = await User.create({
       name,
       email,
@@ -128,11 +128,11 @@ router.put("/users/:id", protectAny, upload.single('image'), async (req, res) =>
     }
 
     if (req.file) {
-      updateData.image = updateImage(req.file, currentUser.image);
+      updateData.image = await updateImage(req.file, currentUser.image);
     } else if (req.body.removeImage === 'true' || req.body.image === '') {
 
       if (currentUser.image) {
-        deleteImage(currentUser.image);
+        await deleteImage(currentUser.image);
       }
       updateData.image = "";
     }
@@ -150,7 +150,7 @@ router.delete("/users/:id", protectAdmin, async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
 
     if (user.image) {
-      deleteImage(user.image);
+      await deleteImage(user.image);
     }
 
     await User.findByIdAndDelete(req.params.id);

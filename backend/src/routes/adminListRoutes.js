@@ -38,10 +38,10 @@ router.put("/admins/:id", protectAdmin, upload.single('image'), async (req, res)
         }
 
         if (req.file) {
-            updateData.image = updateImage(req.file, currentAdmin.image);
+            updateData.image = await updateImage(req.file, currentAdmin.image);
         } else if (req.body.removeImage === 'true' || req.body.image === '') {
             if (currentAdmin.image) {
-                deleteImage(currentAdmin.image);
+                await deleteImage(currentAdmin.image);
             }
             updateData.image = "";
         }
@@ -59,7 +59,7 @@ router.delete("/admins/:id", protectAdmin, async (req, res) => {
         if (!admin) return res.status(404).json({ message: "Admin not found" });
 
         if (admin.image) {
-            deleteImage(admin.image);
+            await deleteImage(admin.image);
         }
 
         await Admin.findByIdAndDelete(req.params.id);

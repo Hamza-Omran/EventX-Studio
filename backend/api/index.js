@@ -1,22 +1,24 @@
 const dotenv = require("dotenv");
-if (process.env.NODE_ENV !== "production") {
-    dotenv.config();
-}
+
+// Load environment variables
+dotenv.config();
 
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const connectDB = require("./config/db.js");
-const authRoutes = require("./routes/authRoutes.js");
-const adminAuthRoutes = require("./routes/adminAuth.js");
-const eventRoutes = require("./routes/eventRoutes.js");
-const bookingAndTicketRoutes = require("./routes/bookingAndTicketRoutes.js");
-const analyticsRoutes = require("./routes/analyticsRoutes.js");
-const messageRoutes = require("./routes/messageRoutes.js");
-const adminListRoutes = require("./routes/adminListRoutes.js");
-const dashboardStatsRoutes = require("./routes/dashboardStatsRoutes.js");
-const optimizedRoutes = require("./routes/optimizedRoutes.js");
+const path = require("path");
+const connectDB = require("../src/config/db.js");
+const authRoutes = require("../src/routes/authRoutes.js");
+const adminAuthRoutes = require("../src/routes/adminAuth.js");
+const eventRoutes = require("../src/routes/eventRoutes.js");
+const bookingAndTicketRoutes = require("../src/routes/bookingAndTicketRoutes.js");
+const analyticsRoutes = require("../src/routes/analyticsRoutes.js");
+const messageRoutes = require("../src/routes/messageRoutes.js");
+const adminListRoutes = require("../src/routes/adminListRoutes.js");
+const dashboardStatsRoutes = require("../src/routes/dashboardStatsRoutes.js");
+const optimizedRoutes = require("../src/routes/optimizedRoutes.js");
 
+// Connect to MongoDB
 connectDB();
 
 const app = express();
@@ -37,7 +39,8 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }));
 
-// Note: Images are now stored in Cloudinary (URLs stored in database)
+// Note: Images are now served from Cloudinary (URLs stored in database)
+// No local static file serving needed for Vercel deployment
 
 // API Routes
 app.use("/api/auth", authRoutes);
@@ -59,11 +62,11 @@ app.get("/api/health", (req, res) => {
     });
 });
 
+// Error handling middleware
 app.use((err, req, res, next) => {
+    console.error(err.stack);
     res.status(500).json({ message: "Server error" });
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Export the Express app for Vercel
+module.exports = app;
