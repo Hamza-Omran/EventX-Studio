@@ -26,16 +26,35 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS configuration
-app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "https://event-x-studio-alpha.vercel.app",
-        /\.vercel\.app$/
-    ],
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        const allowedOrigins = [
+            "http://localhost:5173",
+            "http://localhost:3000",
+            "https://event-x-studio-alpha.vercel.app",
+            "https://event-x-studio-slg5.vercel.app"
+        ];
+
+        // Check if origin matches allowed list or is a vercel.app subdomain
+        if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+            callback(null, true);
+        } else {
+            callback(null, true); // Allow all origins for now
+        }
+    },
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-}));
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests explicitly
+app.options('*', cors(corsOptions));
 
 // Note: Images are now stored in Cloudinary (URLs stored in database)
 
