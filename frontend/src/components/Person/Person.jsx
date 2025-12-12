@@ -78,7 +78,7 @@ const Person = ({ _id, name, email, age, gender, location, interests, image, cre
                 <div className="person-image-container">
                     {image && !imageError ? (
                         <img
-                            src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}`}
+                            src={image.startsWith('http') ? image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${image}`}
                             alt={`${name}'s profile`}
                             onError={() => setImageError(true)}
                         />

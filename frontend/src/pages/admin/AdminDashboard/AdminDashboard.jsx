@@ -188,7 +188,7 @@ const AdminDashboard = () => {
                     <div className="admin-dashboard-avatar">
                         {userInfo?.image && !avatarImageError ? (
                             <img
-                                src={`${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${userInfo.image}`}
+                                src={userInfo.image.startsWith('http') ? userInfo.image : `${import.meta.env.VITE_BASE_URL || 'http://localhost:5000'}/${userInfo.image}`}
                                 alt={`${userInfo.name}'s profile`}
                                 onError={() => setAvatarImageError(true)}
                             />
