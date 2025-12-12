@@ -29,17 +29,10 @@
             ]
         }
     ],
-    "routes": [
+    "rewrites": [
         {
-            "src": "/api/(.*)",
-            "methods": [
-                "OPTIONS"
-            ],
-            "dest": "/api/index.js"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.js"
+            "source": "/(.*)",
+            "destination": "/api/index.js"
         }
     ]
 }
