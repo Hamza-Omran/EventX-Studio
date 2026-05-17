@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: true, credentials: true }));
-app.options('*', cors());
+app.options('{*path}', cors());
 
 // MongoDB connection
 let isConnected = false;
