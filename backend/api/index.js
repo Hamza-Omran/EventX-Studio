@@ -1,15 +1,36 @@
-mongodb+srv://Hamza:K3eGYiCStCD1Umh8@cluster0.dtpixh4.mongodb.net/eventx?retryWrites=true&w=majority&appName=Cluster0const express = require("express");
+const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 
 const app = express();
 
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        const allowedOrigins = [
+            "http://localhost:5173",
+            "http://localhost:3000",
+            "https://event-x-studio-alpha.vercel.app",
+            "https://event-x-studio-slg5.vercel.app"
+        ];
+        if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+            callback(null, true);
+        } else {
+            callback(null, true);
+        }
+    },
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    optionsSuccessStatus: 200
+};
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: true, credentials: true }));
-app.options('{*path}', cors());
+app.use(cors(corsOptions));
+app.options('{*path}', cors(corsOptions));
 
 // MongoDB connection
 let isConnected = false;
