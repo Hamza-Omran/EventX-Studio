@@ -1,4 +1,4 @@
-const express = require("express");
+mongodb+srv://Hamza:K3eGYiCStCD1Umh8@cluster0.dtpixh4.mongodb.net/eventx?retryWrites=true&w=majority&appName=Cluster0const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
@@ -60,10 +60,19 @@ app.use("/api", dashboardStatsRoutes);
 app.use("/api/optimized", optimizedRoutes);
 
 // Health check
-app.get("/api/health", (req, res) => {
+app.get("/api/health", async (req, res) => {
+    let dbError = null;
+    try {
+        await connectDB();
+    } catch (e) {
+        dbError = e.message;
+    }
     res.json({
         status: "ok",
         mongodb: mongoose.connection.readyState === 1 ? "connected" : "disconnected",
+        mongoUriSet: !!process.env.MONGO_URI,
+        mongoUriPrefix: process.env.MONGO_URI ? process.env.MONGO_URI.substring(0, 20) + "..." : "NOT SET",
+        dbError: dbError,
         timestamp: new Date().toISOString()
     });
 });
