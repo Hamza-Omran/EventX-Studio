@@ -60,19 +60,10 @@ app.use("/api", dashboardStatsRoutes);
 app.use("/api/optimized", optimizedRoutes);
 
 // Health check
-app.get("/api/health", async (req, res) => {
-    let dbError = null;
-    try {
-        await connectDB();
-    } catch (e) {
-        dbError = e.message;
-    }
+app.get("/api/health", (req, res) => {
     res.json({
         status: "ok",
         mongodb: mongoose.connection.readyState === 1 ? "connected" : "disconnected",
-        mongoUriSet: !!process.env.MONGO_URI,
-        mongoUriPrefix: process.env.MONGO_URI ? process.env.MONGO_URI.substring(0, 20) + "..." : "NOT SET",
-        dbError: dbError,
         timestamp: new Date().toISOString()
     });
 });
