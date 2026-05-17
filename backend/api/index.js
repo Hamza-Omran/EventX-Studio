@@ -55,7 +55,10 @@ async function connectDB() {
         throw new Error("MONGO_URI not set");
     }
 
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri, {
+        serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+        family: 4 // Force IPv4 (fixes Vercel DNS issues with MongoDB Atlas)
+    });
     isConnected = true;
 }
 
