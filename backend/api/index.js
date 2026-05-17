@@ -26,6 +26,18 @@ const corsOptions = {
     optionsSuccessStatus: 200
 };
 
+// Debug Root
+app.get("/", (req, res) => {
+    const mongoUri = process.env.MONGO_URI;
+    res.json({ 
+        message: "EventX Studio API", 
+        status: "running",
+        mongoUriExists: !!mongoUri,
+        mongoUriPrefix: mongoUri ? mongoUri.substring(0, 30) + "..." : "NOT SET",
+        nodeEnv: process.env.NODE_ENV
+    });
+});
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -89,10 +101,7 @@ app.get("/api/health", (req, res) => {
     });
 });
 
-// Root
-app.get("/", (req, res) => {
-    res.json({ message: "EventX Studio API", status: "running" });
-});
+
 
 // 404
 app.use((req, res) => {
